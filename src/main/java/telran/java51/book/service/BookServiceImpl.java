@@ -39,10 +39,10 @@ public class BookServiceImpl implements BookService {
 		if(bookRepository.existsById(bookDto.getIsbn())) {
 			return false;
 		}
-		//Publisher
+		//Publisher.
 		Publisher publisher = publisherRepository.findById(bookDto.getPublisher())
 				.orElse(publisherRepository.save(new Publisher(bookDto.getPublisher())));
-//		//Authors
+//		//Authors.
 		Set<Author> authors = bookDto.getAuthors().stream()
 				.map(a -> authorRepository.findById(a.getName())
 				.orElse(authorRepository.save(new Author(a.getName(), a.getBirthDate()))))
